@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('warehouses', function (Blueprint $table) {
             $table->id();
-            
+            $table->unsignedBigInteger('medicine_id');
+            $table->unsignedBigInteger('order_id');
+            $table->foreign('medicine_id')->references('id')->on('Medicines')->onDelete('cascade');
+            $table->foreign('order_id')->references('id')->on('MedicineOrders')->onDelete('cascade');
             $table->timestamps();
             
         });
