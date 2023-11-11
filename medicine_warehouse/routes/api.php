@@ -2,6 +2,10 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MedicineController;
+use App\Http\Controllers\MedicineOrderController;
+use App\Http\Controllers\PharmacyController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +23,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('medicines', MedicineController::class);
-Route::apiResource('orders', OrderController::class);
+Route::apiResource('orders', MedicineOrderController::class);
 Route::apiResource('pharmacies', PharmacyController::class);
 
