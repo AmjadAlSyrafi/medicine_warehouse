@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\MedicineOrder;
+use App\Models\Classification;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,8 @@ class WarehouseFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'classification_id' => Classification::factory(),
+            'order_id' => MedicineOrder::factory(),
         ];
     }
 }

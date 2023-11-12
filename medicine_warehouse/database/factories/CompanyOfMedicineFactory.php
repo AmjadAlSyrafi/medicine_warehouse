@@ -17,7 +17,7 @@ class CompanyOfMedicineFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'companyName' => $this->faker->company, 
         ];
     }
 }

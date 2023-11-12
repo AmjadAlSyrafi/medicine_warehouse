@@ -17,7 +17,8 @@ class MedicineOrderFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'status' => $this->faker->randomElement(['in_preparation', 'sent', 'received']),
+            'payment_status' => $this->faker->randomElement(['not_paid', 'paid']),
         ];
     }
 }
