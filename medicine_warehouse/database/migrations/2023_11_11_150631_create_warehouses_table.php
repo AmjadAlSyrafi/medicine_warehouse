@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('warehouses', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('Classification_id');
+            $table->unsignedBigInteger('classification_id');
             $table->unsignedBigInteger('order_id');
-            $table->foreign('Classification_id')->references('id')->on('Classification')->onDelete('cascade');
-            $table->foreign('order_id')->references('id')->on('MedicineOrders')->onDelete('cascade');
             $table->timestamps();
+
+            $table->foreign('classification_id')->references('id')->on('classifications')->onDelete('cascade');
+            $table->foreign('order_id')->references('id')->on('medicine_orders')->onDelete('cascade');
             
         });
     }
