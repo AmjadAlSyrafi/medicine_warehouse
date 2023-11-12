@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Warehouse extends Model
 {
     use HasFactory;
-    public function medicines()
+    public function Classification()
     {
-        return $this->hasMany(Medicine::class);
+        return $this->hasMany(Classification::class);
     }
 
     public function orders()

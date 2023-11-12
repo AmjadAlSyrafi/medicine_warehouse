@@ -15,8 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('scientific_name');
             $table->string('trade_name');
-            $table->string('classification');
-            $table->string('companyName');
+            $table->string('classification_id');
+            $table->foreign('Classification_id')->references('id')->on('Classification')->onDelete('cascade');
+            $table->string('company_name_id');
+            $table->foreign('company_name_id')->references('id')->on('CompanyOfMedicine')->onDelete('cascade');
             $table->integer('available_quantity');
             $table->date('expiry_date');
             $table->decimal('price', 8, 2);

@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CompanyOfMedicine extends Model
+class Classification extends Model
 {
-    public function Medicine()
+    public function warehouse()
     {
-        return $this->hasMany(Medicine::class);
+        return $this->belongsTo(Warehouse::class);
     }
 }

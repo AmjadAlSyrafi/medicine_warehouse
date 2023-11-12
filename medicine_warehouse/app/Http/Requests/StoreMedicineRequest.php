@@ -23,13 +23,13 @@ class StoreMedicineRequest extends FormRequest
     {
         return [
 
-            'scientificName' => ['required|string'],
-            'tradeName' => ['required|string'],
-            'classification' =>['required|string'],
-            'manufacturer' => ['required|string'],
-            'availableQuantity' => ['required|integer'],
-            'expiryDate' => ['required|date'],
-            'price' => ['required|numeric'],
+            'scientificName' => ['required','string'],
+            'tradeName' => ['required','string'],
+            'classification' =>['required','string'],
+            'CompanyNameId' => ['required','string'],
+            'availableQuantity' => ['required','integer'],
+            'expiryDate' => ['required','date'],
+            'price' => ['required','numeric'],
         ];
     }
 
@@ -38,6 +38,7 @@ class StoreMedicineRequest extends FormRequest
             'scientific_name'=> $this->scientificName ,
             'trade_name'=> $this->tradeName ,
             'expiry_date'=> $this->expiryDate , 
+            'company_name_id'=> $this->CompanyNameId ,
             'available_quantity'=> $this->availableQuantity ,
             ]);
     }
