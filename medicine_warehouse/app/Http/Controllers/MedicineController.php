@@ -16,7 +16,11 @@ class MedicineController extends Controller
      */
     public function index(Request $request)
     {
-        $medicine = Medicine::all();
+        $medicine = Medicine::query();
+
+        if($request->has("IncludeClassification")){
+           $medicine->with("classification");
+        } 
 
         $perPage = $request->input('per_page' , 10);
         $medicines = $medicine->paginate($perPage);

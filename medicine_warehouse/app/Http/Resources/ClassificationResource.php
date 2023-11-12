@@ -17,7 +17,7 @@ class ClassificationResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'medicine'=> MedicineResource::Collection($this->whenLoaded('invoices')),
+            'medicine'=> MedicineResource::Collection($this->whenLoaded('medicine')),
         ];
     }
 }
