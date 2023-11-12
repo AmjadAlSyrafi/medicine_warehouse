@@ -3,18 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Models\Medicine;
+use App\Http\Resources\MedicineResource;
+use App\Http\Resources\MedicineCollection;
 use App\Http\Requests\StoreMedicineRequest;
 use App\Http\Requests\UpdateMedicineRequest;
+use Illuminate\Http\Request;
 
 class MedicineController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $medicines = Medicine::all();
-        return response()->json(['medicines' => $medicines], 200);
+        $medicine = Medicine::all();
+
+        $perPage = $request->input('per_page' , 10);
+        $medicines = $medicine->paginate($perPage);
+
+         return new MedicineCollection($medicines);
+        
     }
 
     /**
@@ -30,7 +38,7 @@ class MedicineController extends Controller
      */
     public function store(StoreMedicineRequest $request)
     {
-        return new ($request->all());
+        return new MedicineResource( Medicine::create($request->all()));
     }
 
     /**
@@ -44,7 +52,7 @@ class MedicineController extends Controller
             return response()->json(['error' => 'Medicine not found'], 404);
         }
 
-        return response()->json(['medicine' => $medicine], 200);
+        return new MedicineResource( $medicine );
     }
 
     /**
