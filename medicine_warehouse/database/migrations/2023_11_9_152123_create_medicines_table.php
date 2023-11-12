@@ -15,14 +15,15 @@ return new class extends Migration
             $table->id();
             $table->string('scientific_name');
             $table->string('trade_name');
-            $table->string('classification_id');
-            $table->foreign('Classification_id')->references('id')->on('Classification')->onDelete('cascade');
-            $table->string('company_name_id');
-            $table->foreign('company_name_id')->references('id')->on('CompanyOfMedicine')->onDelete('cascade');
+            $table->unsignedBigInteger('classification_id');
+            $table->unsignedBigInteger('company_name_id');
             $table->integer('available_quantity');
             $table->date('expiry_date');
             $table->decimal('price', 8, 2);
             $table->timestamps();
+
+            $table->foreign('classification_id')->references('id')->on('classifications')->onDelete('cascade');
+            $table->foreign('company_name_id')->references('id')->on('company_of_medicines')->onDelete('cascade');
         });
     }
 

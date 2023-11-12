@@ -14,10 +14,13 @@ return new class extends Migration
         Schema::create('medicine_orders', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('pharmacist_id');
-            $table->foreign('pharmacist_id')->references('id')->on('users'); // Assuming 'users' table for pharmacists
             $table->string('status')->default('in_preparation');
             $table->string('payment_status')->default('not_paid');
             $table->timestamps();
+    
+            
+                    
+        
         });
     }
 

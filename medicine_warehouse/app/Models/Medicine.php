@@ -16,9 +16,10 @@ class Medicine extends Model
         return $this->belongsTo(Classification::class);
     }
 
-    public function CompanyOfMedicine()
+    // A medicine belongs to a company
+    public function company()
     {
-        return $this->belongsTo(CompanyOfMedicine::class);
+        return $this->belongsTo(CompanyOfMedicine::class, 'company_name_id');
     }
 
 }
