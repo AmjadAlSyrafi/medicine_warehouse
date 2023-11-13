@@ -13,7 +13,12 @@ class CompanyOfMedicineController extends Controller
      */
     public function index()
     {
-        //
+        $companies = CompanyOfMedicine::all();
+
+        return response()->json([
+            'data' => $companies,
+            'message' => 'Companies retrieved successfully',
+        ]);
     }
 
     /**

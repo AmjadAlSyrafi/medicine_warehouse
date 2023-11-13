@@ -12,7 +12,7 @@ class MedicineOrder extends Model
         'pharmacist_id',
         'status',
         'payment_status',
-        
+
     ];
 
   // A medicine order belongs to a pharmacist

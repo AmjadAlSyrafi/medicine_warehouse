@@ -13,7 +13,24 @@ class WarehouseController extends Controller
      */
     public function index()
     {
-        //
+        $query = Warehouse::query();
+
+        // Example: Filter by classification_id
+        if ($request->has('classification_id')) {
+            $query->where('classification_id', $request->input('classification_id'));
+        }
+
+        // Example: Filter by order_id
+        if ($request->has('order_id')) {
+            $query->where('order_id', $request->input('order_id'));
+        }
+
+        $warehouses = $query->get();
+
+        return response()->json([
+            'data' => $warehouses,
+            'message' => 'Warehouses retrieved successfully',
+        ]);
     }
 
     /**

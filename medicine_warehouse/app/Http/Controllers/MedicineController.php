@@ -16,17 +16,24 @@ class MedicineController extends Controller
      */
     public function index(Request $request)
     {
-        $medicine = Medicine::query();
+        $query = Medicine::query();
 
-        if($request->has("IncludeClassification")){
-           $medicine->with("classification");
-        } 
+        // Example: Filter by classification_id
+        if ($request->has('classification_id')) {
+            $query->where('classification_id', $request->input('classification_id'));
+        }
 
-        $perPage = $request->input('per_page' , 10);
-        $medicines = $medicine->paginate($perPage);
+        // Example: Filter by company_name_id
+        if ($request->has('company_name_id')) {
+            $query->where('company_name_id', $request->input('company_name_id'));
+        }
 
-         return new MedicineCollection($medicines);
-        
+        $medicines = $query->get();
+
+        return response()->json([
+            'data' => $medicines,
+            'message' => 'Medicines retrieved successfully',
+        ]);
     }
 
     /**
@@ -92,4 +99,5 @@ class MedicineController extends Controller
     }
 
 }
+
 

@@ -11,9 +11,31 @@ class MedicineOrderController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $query = MedicineOrder::query();
+
+        // Example: Filter by pharmacist_id
+        if ($request->has('pharmacist_id')) {
+            $query->where('pharmacist_id', $request->input('pharmacist_id'));
+        }
+
+        // Example: Filter by status
+        if ($request->has('status')) {
+            $query->where('status', $request->input('status'));
+        }
+
+        // Example: Filter by payment_status
+        if ($request->has('payment_status')) {
+            $query->where('payment_status', $request->input('payment_status'));
+        }
+
+        $medicineOrders = $query->get();
+
+        return response()->json([
+            'data' => $medicineOrders,
+            'message' => 'Medicine orders retrieved successfully',
+        ]);
     }
 
     /**
