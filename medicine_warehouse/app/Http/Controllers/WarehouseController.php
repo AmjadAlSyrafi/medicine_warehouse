@@ -11,32 +11,26 @@ class WarehouseController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $query = Warehouse::query();
+        $warehouse = Warehouse::query();
 
-        // Example: Filter by classification_id
-        if ($request->has('classification_id')) {
-            $query->where('classification_id', $request->input('classification_id'));
-        }
+     if ($request->has("Classification_id")) {
+        $warehouse->with("classification");
+     }
 
-        // Example: Filter by order_id
-        if ($request->has('order_id')) {
-            $query->where('order_id', $request->input('order_id'));
-        }
+     $perPage = $request->input('per_page', 1);
+     $warehouses = $warehouse->paginate($perPage);
 
-        $warehouses = $query->get();
+     return new WarehouseCollection($warehouses);
 
-        return response()->json([
-            'data' => $warehouses,
-            'message' => 'Warehouses retrieved successfully',
-        ]);
+
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
         //
     }
@@ -52,7 +46,7 @@ class WarehouseController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Warehouse $warehouse)
+    public function show(Warehouse $warehouse,Request $request)
     {
         //
     }
@@ -60,7 +54,7 @@ class WarehouseController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Warehouse $warehouse)
+    public function edit(Warehouse $warehouse,Request $request)
     {
         //
     }
@@ -76,7 +70,7 @@ class WarehouseController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Warehouse $warehouse)
+    public function destroy(Warehouse $warehouse,Request $request)
     {
         //
     }

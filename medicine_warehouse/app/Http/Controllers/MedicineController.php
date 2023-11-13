@@ -16,24 +16,17 @@ class MedicineController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Medicine::query();
+        $companies = CompanyOfMedicine::query();
 
-        // Example: Filter by classification_id
-        if ($request->has('classification_id')) {
-            $query->where('classification_id', $request->input('classification_id'));
-        }
+        if ($request->has("cmpanyname")) {
+         $companies->with("medicines");
+}
 
-        // Example: Filter by company_name_id
-        if ($request->has('company_name_id')) {
-            $query->where('company_name_id', $request->input('company_name_id'));
-        }
+         $perPage = $request->input('per_page', 1);
+         $companies = $companies->paginate($perPage);
 
-        $medicines = $query->get();
+         return new CompanyOfMedicineCollection($companies);
 
-        return response()->json([
-            'data' => $medicines,
-            'message' => 'Medicines retrieved successfully',
-        ]);
     }
 
     /**

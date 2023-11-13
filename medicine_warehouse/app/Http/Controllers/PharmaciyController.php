@@ -11,15 +11,15 @@ class PharmaciyController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
         //
     }
@@ -35,7 +35,7 @@ class PharmaciyController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Pharmaciy $pharmaciy)
+    public function show(Pharmaciy $pharmaciy,Request $request)
     {
         //
     }
@@ -43,7 +43,7 @@ class PharmaciyController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Pharmaciy $pharmaciy)
+    public function edit(Pharmaciy $pharmaciy,Request $request)
     {
         //
     }
@@ -59,7 +59,7 @@ class PharmaciyController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Pharmaciy $pharmaciy)
+    public function destroy(Pharmaciy $pharmaciy,Request $request)
     {
         //
     }
