@@ -16,8 +16,14 @@ class ClassificationController extends Controller
      */
     public function index()
     {
-        return new ClassificationResource(Classification::all());
+        $classifications = Classification::all();
+
+        return response()->json([
+            'data' => $classifications,
+            'message' => 'Classifications retrieved successfully',
+        ]);
     }
+
 
     /**
      * Show the form for creating a new resource.
