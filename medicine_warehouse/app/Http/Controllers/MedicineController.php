@@ -20,13 +20,13 @@ class MedicineController extends Controller
 
         if($request->has("IncludeClassification")){
            $medicine->with("classification");
-        } 
+        }
 
         $perPage = $request->input('per_page' , 10);
         $medicines = $medicine->paginate($perPage);
 
          return new MedicineCollection($medicines);
-        
+
     }
 
     /**
@@ -92,4 +92,5 @@ class MedicineController extends Controller
     }
 
 }
+
 
