@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('payment_status')->default('not_paid');
             $table->timestamps();
     
+            $table->foreign('pharmacist_id')->references('id')->on('users')->onDelete('cascade');
             
                     
         
